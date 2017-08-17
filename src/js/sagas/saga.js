@@ -4,7 +4,9 @@ SAVE_BOOK_DETAIL, REVERT_BOOK_DETAIL} from "../constants/actionTypes";
 
 
 
-export default function* rootSaga() {    
-    //yield takeEvery(HANDLE_SEARCH_TERM, handleSearchTerm);
-    yield all()
+export default function* rootSaga() {
+    // yield all([fetchBookData()]);
+    yield takeEvery(HANDLE_SEARCH_TERM, handleSearchTerm);
+    yield takeEvery(HANDLE_SEARCH_TERM2, handleSearchTerm2);
+    yield takeEvery(HANDLE_SEARCH_TERM3, handleSearchTerm3);
 }
