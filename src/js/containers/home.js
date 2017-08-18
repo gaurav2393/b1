@@ -11,7 +11,10 @@ class Home extends React.Component {
         //     searchText: "",
         //     data: []
         // };
-        this.handleSearchText = this.handleSearchText.bind(this);
+        this.state = {
+            data: []
+        };        
+        this.handleSearchTerm = this.handleSearchTerm.bind(this);
         this.searchData = this.searchData.bind(this);
         this.clearSearchTerm = this.clearSearchTerm.bind(this);
     }
@@ -21,14 +24,25 @@ class Home extends React.Component {
     //         searchText: value
     //     });
     // }
-    handleSearchText(event){
+    handleSearchTerm(event){
         this.props.handleSearchTerm(event.target.value);
     }
     clearSearchTerm(){
-        this.props.clearSearchTerm();
+        this.props.handleSearchTerm("");
     }
     searchData(){
-        
+        var length = this.props.booksData.length;
+        var dataToRender = [];
+        var searchString = this.props.search.searchTerm.toUpperCase();
+        for( let i = 0; i < length; i++ ) {
+            let name = this.props.booksData[i]["name"].toUpperCase();
+            if( name.indexOf(searchString)>=0 ) {
+                dataToRender.push(this.props.booksData[i]);
+            }
+        }
+        this.setState({
+            data: dataToRender
+        });
     }
     // clearData(){
     //     this.setState({
@@ -40,7 +54,6 @@ class Home extends React.Component {
     //    this.props.searchData();
     //}
     componentDidMount() {
-        console.log(this.props);
         this.props.fetchBooksData();
         // var main = this;
         // fetch("http://localhost:3000/booksData").then(function(response){
@@ -72,33 +85,47 @@ class Home extends React.Component {
         //     console.log("An Error Occured:", err);
         // });
     }
-    render() {        
-        return (            
+    componentWillReceiveProps(nextProps) {
+        if(this.props.booksData!==nextProps.booksData) {
+            var length = nextProps.booksData.length;
+            var dataToRender = [];
+            var searchString = nextProps.search.searchTerm.toUpperCase();
+            for( let i = 0; i < length; i++ ) {
+                let name = nextProps.booksData[i]["name"].toUpperCase();
+                if( name.indexOf( searchString ) >= 0 ) {
+                    dataToRender.push(nextProps.booksData[i]);
+                }
+            }
+            this.setState({
+                data: dataToRender
+            });
+        }
+    }
+    render() {
+        console.log(this.props);
+        return (
             <div className="home">
                 <h1>BOOK STORE</h1>
-                <Search searchText={this.props.search.searchText} handleSearchText={this.props.handleSearchTerm} 
-                searchData={this.props.searchData} clearData={this.props.clearData}/>
-                <BooksList searchText={this.props.search.searchText} items={this.props.booksData}/>
+                <Search searchText={this.props.search.searchText} handleSearchText={this.handleSearchTerm} 
+                searchData={this.searchData} clearSearchTerm={this.clearSearchTerm}/>
+                <BooksList searchText={this.props.search.searchText} items={this.state.data}/>
             </div>
         );
     }
 }
 const mapStateToProps = ({state}) => {
-    let homeProps={};
-    homeProps.search=state.search;
-    homeProps.booksData;
-    return homeProps;
+    return {
+        search: state.search,
+        booksData: state.booksData
+    };
 };
 const mapDispatchToProps = (dispatch) => {
     return {
         handleSearchTerm: (searchValue) => {
             dispatch(actions.handleSearchTerm(searchValue));
         },
-        clearSearchTerm: () => {
-            dispatch(actions.clearSearchTerm());
-        },
         fetchBooksData: () => {
-            dispatch(actions.fetchBooksData("sd"));
+            dispatch(actions.fetchBooksData());
         }
     };
 };

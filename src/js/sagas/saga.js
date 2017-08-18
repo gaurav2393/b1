@@ -4,8 +4,7 @@ import * as commonFunctions from "../common/common";
 
 function* fetchBookData(){
 	var booksData = yield call(commonFunctions.fetchBookData);
-	console.log("saga",booksData);
-	alert(booksData);
+	yield put({type: actionTypes.UPDATE_BOOKS_DATA, booksData: booksData});
 }
 
 export default function* rootSaga() {

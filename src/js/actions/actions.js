@@ -13,14 +13,14 @@ export function searchData() {
         type: actionTypes.HANDLE_SEARCH_TERM        
     };
 }
-export function clearSearchTerm() {
+export function fetchBooksData() {
     return {
-        type: actionTypes.HANDLE_SEARCH_TERM
+        type: actionTypes.FETCH_BOOKS_DATA        
     };
 }
-export function fetchBooksData(booksData) {
+export function updateBooksData(booksData) {
     return {
-        type: actionTypes.FETCH_BOOKS_DATA,
-        booksData: "ghj"
+        type: actionTypes.UPDATE_BOOKS_DATA,
+        booksData
     };
 }
