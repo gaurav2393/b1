@@ -12,7 +12,7 @@ class BookStore extends React.Component {
                     <Redirect exact from="/" to="/home"/>
                     <Route  path="/home" component={Home}/>
                     <Route  path="/search" component={Home}/>
-                    <Route  path="/bookDetail" component={Details}/>
+                    <Route  path="/bookDetail/:id" component={Details}/>
                 </Switch>                
             </Router>
         );

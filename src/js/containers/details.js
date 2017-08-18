@@ -1,6 +1,8 @@
 import React from "react";
 import ShowBookDetail from "../components/showBookDetail.js";
 import EditBookDetail from "../components/editBookDetail";
+import { connect } from "react-redux";
+import * as actions from "../actions/actions";
 
 class Details extends React.Component {
     constructor(props) {
@@ -10,14 +12,29 @@ class Details extends React.Component {
             editBookData: false,
             tempData: {}
         };
+        this.filterData = this.filterData.bind(this);
         this.handleBookEdit = this.handleBookEdit.bind(this);
         this.handleDataChange = this.handleDataChange.bind(this);
         this.saveData = this.saveData.bind(this);
         this.clearData = this.clearData.bind(this);
         this.postData = this.postData.bind(this);
         this.closePopUp = this.closePopUp.bind(this);
+        this.filterData();
     }
-
+    filterData(){
+        // var length = this.props.booksData.length;
+        // var searchString = this.props.match.params.id;        
+        // for (let i = 0; i < length; i++) {
+        //     let id = this.props.booksData[i]["id"];
+        //     if (searchString === id) {
+        //         this.setState({
+        //             itemData: this.props.booksData[i],
+        //             tempData: this.props.booksData[i]
+        //         });
+        //         break;
+        //     }
+        // }
+    }
     handleBookEdit() {
         this.setState({
             editBookData: true
@@ -72,28 +89,20 @@ class Details extends React.Component {
         this.postData();
     }
 
-    componentDidMount() {
-        var main = this;
-        fetch("http://localhost:3000/booksData").then(function (response) {
-            return response.json();
-        }).then(function (data) {
-            var currentURL = window.location.href;
-            let splitURL = currentURL.split("/");
-            let searchString = splitURL[splitURL.length - 1];
-            let lengthOfItems = data.items.length;
-            for (let i = 0; i < lengthOfItems; i++) {
-                let id = data.items[i]["id"];
-                if (searchString === id) {
-                    main.setState({
-                        itemData: data.items[i],
-                        tempData: data.items[i]
-                    });
-                    break;
-                }
+    componentWillMount() {
+        var length = this.props.booksData.length;
+        var searchString = this.props.match.params.id;        
+        for (let i = 0; i < length; i++) {
+            let id = this.props.booksData[i]["id"];
+            if (searchString === id) {
+                this.setState({
+                    itemData: this.props.booksData[i],
+                    tempData: this.props.booksData[i]
+                });
+                break;
             }
-        });
+        }
     }
-
     render() {
         return (
             <div className="details">
@@ -104,5 +113,16 @@ class Details extends React.Component {
         );
     }
 }
-
-export default Details;
+const mapStateToProps = ({state}) => {
+    return {        
+        booksData: state.booksData
+    };
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchBooksData: () => {
+            dispatch(actions.fetchBooksData());
+        }
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Details);

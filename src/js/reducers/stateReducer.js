@@ -5,10 +5,7 @@ const DEFAULT_STATE = {
     search: {
         searchTerm: ""
     },
-    booksData: [],
-    details: {
-        edit: false
-    }
+    booksData: []
 };
 const handleSearchTerm = ( state, action ) => {
     var newState = {};

@@ -101,12 +101,11 @@ class Home extends React.Component {
             });
         }
     }
-    render() {
-        console.log(this.props);
+    render() {        
         return (
             <div className="home">
                 <h1>BOOK STORE</h1>
-                <Search searchText={this.props.search.searchText} handleSearchText={this.handleSearchTerm} 
+                <Search searchText={this.props.search.searchTerm} handleSearchText={this.handleSearchTerm} 
                 searchData={this.searchData} clearSearchTerm={this.clearSearchTerm}/>
                 <BooksList searchText={this.props.search.searchText} items={this.state.data}/>
             </div>
