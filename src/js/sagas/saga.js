@@ -3,7 +3,7 @@ import * as actionTypes from "../constants/actionTypes";
 import * as commonFunctions from "../common/common";
 
 function* fetchBookData(){
-	var booksData = commonFunctions.fetchBookData();
+	var booksData = yield call(commonFunctions.fetchBookData);
 	console.log("saga",booksData);
 	alert(booksData);
 }
