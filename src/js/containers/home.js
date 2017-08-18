@@ -2,7 +2,7 @@ import React from "react";
 import Search from "../components/search";
 import BooksList from "../components/booksList";
 import { connect } from "react-redux";
-import * as actions from "../actions/actions.js";
+import * as actions from "../actions/actions";
 
 class Home extends React.Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class Home extends React.Component {
         // };
         this.handleSearchText = this.handleSearchText.bind(this);
         this.searchData = this.searchData.bind(this);
-        this.clearData = this.clearData.bind(this);
+        this.clearSearchTerm = this.clearSearchTerm.bind(this);
     }
     // handleSearchText(event) {
     //     var value = event.target.value;
@@ -28,7 +28,7 @@ class Home extends React.Component {
         this.props.clearSearchTerm();
     }
     searchData(){
-        upda
+        
     }
     // clearData(){
     //     this.setState({
@@ -40,6 +40,8 @@ class Home extends React.Component {
     //    this.props.searchData();
     //}
     componentDidMount() {
+        console.log(this.props);
+        this.props.fetchBooksData();
         // var main = this;
         // fetch("http://localhost:3000/booksData").then(function(response){
         //     return response.json();
@@ -76,7 +78,7 @@ class Home extends React.Component {
                 <h1>BOOK STORE</h1>
                 <Search searchText={this.props.search.searchText} handleSearchText={this.props.handleSearchTerm} 
                 searchData={this.props.searchData} clearData={this.props.clearData}/>
-                <BooksList searchText={this.state.searchText} items={this.state.data}/>
+                <BooksList searchText={this.props.search.searchText} items={this.props.booksData}/>
             </div>
         );
     }
@@ -95,8 +97,8 @@ const mapDispatchToProps = (dispatch) => {
         clearSearchTerm: () => {
             dispatch(actions.clearSearchTerm());
         },
-        fetchBooksDetail: () => {
-            dispatch(actions.fetchBooksDetail());
+        fetchBooksData: () => {
+            dispatch(actions.fetchBooksData("sd"));
         }
     };
 };

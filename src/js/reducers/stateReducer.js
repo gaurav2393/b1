@@ -21,6 +21,8 @@ const rootReducer = (state = DEFAULT_STATE, action) => {
             return searchData();
         case actionTypes.HANDLE_SEARCH_TERM: 
             return handleSearchTerm(state, searchValue);
+        case actionTypes.FETCH_BOOKS_DATA: 
+            return handleSearchTerm(state, "booksData");
         case actionTypes.FILTER_BOOK_DETAIL: 
             return filerBookDetail();
         case actionTypes.EDIT_BOOK_DETAIL: 

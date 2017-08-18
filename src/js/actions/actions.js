@@ -1,20 +1,26 @@
 // import { SEARCH_DATA, HANDLE_SEARCH_TERM, FILTER_BOOK_DETAIL, EDIT_BOOK_DETAIL, HANDLE_BOOK_DETAIL_CHANGE, 
 // SAVE_BOOK_DETAIL, REVERT_BOOK_DETAIL} from "../constants/actionTypes";
-import * as actionTypes from "../constant/actionTypes";
+import * as actionTypes from "../constants/actionTypes";
 
-function handleSearchTerm(searchValue) {
+export function handleSearchTerm(searchValue) {
     return {
         type: actionTypes.HANDLE_SEARCH_TERM,
         searchValue
-    }
+    };
 }
-function searchData() {
+export function searchData() {
     return {
         type: actionTypes.HANDLE_SEARCH_TERM        
-    }
+    };
 }
-function clearSearchTerm() {
+export function clearSearchTerm() {
     return {
-        type: actionTypes.HANDLE_SEARCH_TERM        
-    }
+        type: actionTypes.HANDLE_SEARCH_TERM
+    };
+}
+export function fetchBooksData(booksData) {
+    return {
+        type: actionTypes.FETCH_BOOKS_DATA,
+        booksData: "ghj"
+    };
 }
