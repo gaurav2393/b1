@@ -12,3 +12,23 @@ export function fetchBookData() {
 
     });
 }
+export function storeBookData(action) {
+    return new Promise(function (resolve, reject) {
+        var payload = Object.assign({}, this.state.tempData);
+        var id = this.state.tempData.id;
+        var data = new FormData();
+        fetch(`http://localhost:3000/booksData/${id}`, {
+            method: "put",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload)
+        }).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+
+        });
+
+    });
+}

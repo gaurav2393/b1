@@ -5,5 +5,5 @@ export const UPDATE_BOOKS_DATA = "Update_books_data";
 export const FILTER_BOOK_DETAIL = "Filter_book_detail";
 export const EDIT_BOOK_DETAIL = "Edit_book_detail";
 export const HANDLE_BOOK_DETAIL_CHANGE = "Handle_book_detail_change";
-export const SAVE_BOOK_DETAIL = "Save_book_detail";
+export const STORE_BOOK_DATA = "Store_book_data";
 export const REVERT_BOOK_DETAIL = "Revert_book_detail";

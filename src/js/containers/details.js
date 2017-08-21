@@ -57,25 +57,28 @@ class Details extends React.Component {
             tempData: this.state.itemData
         });
     }
-
-    postData() {
-
-        var payload = Object.assign({}, this.state.tempData);
-        var id = this.state.tempData.id;
-        var data = new FormData();
-        fetch(`http://localhost:3000/booksData/${id}`, {
-            method: "put",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload)
-        }).then(function (response) {
-            return response.json();
-        }).then(function (data) {
-
-        });
+    postData(dataToStore) {
+        var copyOfData = Object.assign({}, dataToStore);
+        this.props.storeBookData(copyOfData);
     }
+    // postData() {
+
+        // var payload = Object.assign({}, this.state.tempData);
+        // var id = this.state.tempData.id;
+        // var data = new FormData();
+        // fetch(`http://localhost:3000/booksData/${id}`, {
+        //     method: "put",
+        //     headers: {
+        //         "Accept": "application/json",
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify(payload)
+        // }).then(function (response) {
+        //     return response.json();
+        // }).then(function (data) {
+
+        // });
+    // }
     closePopUp() {
         this.setState({
             editBookData: false
@@ -86,7 +89,8 @@ class Details extends React.Component {
             itemData: this.state.tempData,
             editBookData: false
         });
-        this.postData();
+        //this.postData();
+        this.postData(this.state.tempData);
     }
 
     componentWillMount() {
@@ -114,14 +118,14 @@ class Details extends React.Component {
     }
 }
 const mapStateToProps = ({state}) => {
-    return {        
+    return {
         booksData: state.booksData
     };
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchBooksData: () => {
-            dispatch(actions.fetchBooksData());
+        storeBookData: (data) => {
+            dispatch(actions.storeBookData(data));
         }
     };
 };
