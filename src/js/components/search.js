@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Search = (props) => {    
     return (
@@ -6,7 +7,7 @@ const Search = (props) => {
             <form>
                 <input type="text" placeholder="Search"  value={props.searchText} onChange={props.handleSearchText} />
                 <input type="button" value="Clear" onClick={props.clearSearchTerm}/>
-                <input type="button" value="Search" onClick={props.searchData}/>            
+                <Link to={`/search/${props.searchText}`}><input type="button" value="Search" onClick={props.handleSearchClick}/></Link>
             </form>
         </div>
 

@@ -12,14 +12,12 @@ class Details extends React.Component {
             editBookData: false,
             tempData: {}
         };
-        this.filterData = this.filterData.bind(this);
         this.handleBookEdit = this.handleBookEdit.bind(this);
         this.handleDataChange = this.handleDataChange.bind(this);
         this.saveData = this.saveData.bind(this);
         this.clearData = this.clearData.bind(this);
         this.postData = this.postData.bind(this);
-        this.closePopUp = this.closePopUp.bind(this);
-        this.filterData();
+        this.closePopUp = this.closePopUp.bind(this);        
     }
     filterData(){
         // var length = this.props.booksData.length;
@@ -58,8 +56,8 @@ class Details extends React.Component {
         });
     }
     postData(dataToStore) {
-        var copyOfData = Object.assign({}, dataToStore);
-        this.props.storeBookData(copyOfData);
+        // var copyOfData = Object.assign({}, dataToStore);
+        this.props.storeBookData(dataToStore);
     }
     // postData() {
 

@@ -1,3 +1,10 @@
+export function search(searchValue, searchIn) {
+    if(searchIn.indexOf(searchValue)>=0) {
+        return true;
+    } else {
+        return false;
+    }
+}
 export function fetchBookData() {
     return new Promise(function (resolve, reject) {
         fetch("http://localhost:3000/booksData")
@@ -14,8 +21,8 @@ export function fetchBookData() {
 }
 export function storeBookData(action) {
     return new Promise(function (resolve, reject) {
-        var payload = Object.assign({}, this.state.tempData);
-        var id = this.state.tempData.id;
+        var payload = Object.assign({}, action.bookData);
+        var id = action.bookData.id;
         var data = new FormData();
         fetch(`http://localhost:3000/booksData/${id}`, {
             method: "put",
