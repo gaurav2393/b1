@@ -24,3 +24,9 @@ export function updateBooksData(booksData) {
         booksData
     };
 }
+export function storeBookData(bookData) {
+    return {
+        type: actionTypes.STORE_BOOK_DATA,
+        bookData
+    };
+}
