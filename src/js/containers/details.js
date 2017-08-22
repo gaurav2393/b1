@@ -12,7 +12,7 @@ class Details extends React.Component {
             editBookData: false,
             tempData: {}
         };
-        this.handleBookEdit = this.handleBookEdit.bind(this);
+        this.openPopUp = this.openPopUp.bind(this);
         this.handleDataChange = this.handleDataChange.bind(this);
         this.saveData = this.saveData.bind(this);
         this.clearData = this.clearData.bind(this);
@@ -33,11 +33,6 @@ class Details extends React.Component {
         //     }
         // }
     }
-    handleBookEdit() {
-        this.setState({
-            editBookData: true
-        });
-    }
 
     handleDataChange(args, event) {
         var value = event.target.value;
@@ -54,10 +49,6 @@ class Details extends React.Component {
         this.setState({
             tempData: this.state.itemData
         });
-    }
-    postData(dataToStore) {
-        // var copyOfData = Object.assign({}, dataToStore);
-        this.props.storeBookData(dataToStore);
     }
     // postData() {
 
@@ -77,6 +68,11 @@ class Details extends React.Component {
 
         // });
     // }
+    openPopUp() {
+        this.setState({
+            editBookData: true
+        });
+    }
     closePopUp() {
         this.setState({
             editBookData: false
@@ -88,18 +84,19 @@ class Details extends React.Component {
             editBookData: false
         });
         //this.postData();
-        this.postData(this.state.tempData);
+        this.props.storeBookData(this.state.tempData);
     }
 
     componentWillMount() {
-        var length = this.props.booksData.length;
+        var booksData = this.props.booksData;
+        var length = booksData.length;
         var searchString = this.props.match.params.id;        
         for (let i = 0; i < length; i++) {
-            let id = this.props.booksData[i]["id"];
+            let id = booksData[i]["id"];
             if (searchString === id) {
                 this.setState({
-                    itemData: this.props.booksData[i],
-                    tempData: this.props.booksData[i]
+                    itemData: booksData[i],
+                    tempData: booksData[i]
                 });
                 break;
             }
@@ -108,7 +105,7 @@ class Details extends React.Component {
     render() {
         return (
             <div className="details">
-                {!this.state.editBookData? <ShowBookDetail itemData={this.state.itemData} handleBookEdit={this.handleBookEdit} />:""}
+                {!this.state.editBookData? <ShowBookDetail itemData={this.state.itemData} handleBookEdit={this.openPopUp} />:""}
                 {this.state.editBookData? <EditBookDetail itemData={this.state.tempData} handleDataChange={this.handleDataChange} 
                     saveData={this.saveData} closePopUp={this.closePopUp} clearData={this.clearData}/>: ""}
             </div>

@@ -4,7 +4,6 @@ import * as commonFunctions from "../common/common";
 
 function* fetchBookData(){
 	var booksData = yield call(commonFunctions.fetchBookData);
-	alert(1);
 	yield put({type: actionTypes.UPDATE_BOOKS_DATA, booksData: booksData});
 }
 function* storeBookData(action){	
