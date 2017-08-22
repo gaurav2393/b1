@@ -16,22 +16,7 @@ class Details extends React.Component {
         this.handleDataChange = this.handleDataChange.bind(this);
         this.saveData = this.saveData.bind(this);
         this.clearData = this.clearData.bind(this);
-        this.postData = this.postData.bind(this);
         this.closePopUp = this.closePopUp.bind(this);        
-    }
-    filterData(){
-        // var length = this.props.booksData.length;
-        // var searchString = this.props.match.params.id;        
-        // for (let i = 0; i < length; i++) {
-        //     let id = this.props.booksData[i]["id"];
-        //     if (searchString === id) {
-        //         this.setState({
-        //             itemData: this.props.booksData[i],
-        //             tempData: this.props.booksData[i]
-        //         });
-        //         break;
-        //     }
-        // }
     }
 
     handleDataChange(args, event) {
@@ -50,24 +35,6 @@ class Details extends React.Component {
             tempData: this.state.itemData
         });
     }
-    // postData() {
-
-        // var payload = Object.assign({}, this.state.tempData);
-        // var id = this.state.tempData.id;
-        // var data = new FormData();
-        // fetch(`http://localhost:3000/booksData/${id}`, {
-        //     method: "put",
-        //     headers: {
-        //         "Accept": "application/json",
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify(payload)
-        // }).then(function (response) {
-        //     return response.json();
-        // }).then(function (data) {
-
-        // });
-    // }
     openPopUp() {
         this.setState({
             editBookData: true
@@ -83,7 +50,6 @@ class Details extends React.Component {
             itemData: this.state.tempData,
             editBookData: false
         });
-        //this.postData();
         this.props.storeBookData(this.state.tempData);
     }
 
@@ -112,16 +78,4 @@ class Details extends React.Component {
         );
     }
 }
-const mapStateToProps = ({state}) => {
-    return {
-        booksData: state.booksData
-    };
-};
-const mapDispatchToProps = (dispatch) => {
-    return {
-        storeBookData: (data) => {
-            dispatch(actions.storeBookData(data));
-        }
-    };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Details);
+export default Details;

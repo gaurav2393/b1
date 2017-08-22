@@ -12,8 +12,6 @@ class Home extends React.Component {
             data: []
         };        
         this.handleSearchTerm = this.handleSearchTerm.bind(this);
-        this.searchBook = this.searchBook.bind(this);
-        this.handleSearchClick = this.handleSearchClick.bind(this);
         this.clearSearchTerm = this.clearSearchTerm.bind(this);
     }
     handleSearchTerm(event){
@@ -22,69 +20,16 @@ class Home extends React.Component {
     clearSearchTerm(){
         this.props.handleSearchTerm("");
     }
-    // searchData(){
-    //     var length = this.props.booksData.length;
-    //     var dataToRender = [];
-    //     var currentURL = window.location.href;
-    //     let splitURL = currentURL.split("/");
-    //     let searchString = splitURL[splitURL.length-1].toUpperCase();
-    //     for( let i = 0; i < length; i++ ) {
-    //         let name = this.props.booksData[i]["name"].toUpperCase();
-    //         if( name.indexOf(searchString)>=0 ) {
-    //             dataToRender.push(this.props.booksData[i]);
-    //         }
-    //     }
-    //     this.setState({
-    //         data: dataToRender
-    //     });
-    // }
-    searchBook(searchValue){
-        var booksData = this.props.booksData;
-        var length = this.props.booksData.length;
-        var dataToRender = [];
-        for( let i = 0; i < length; i++ ) {
-            let name = booksData[i]["name"].toUpperCase();
-            if(search(searchValue, name)) {
-                dataToRender.push(booksData[i]);
-            }
-        }
-        this.setState({
-            data: dataToRender
-        });
-    }
-    handleSearchClick() {
-        this.searchBook(this.props.search.searchTerm.toUpperCase());
-    }
     componentDidMount() {
         this.props.fetchBooksData();
-        alert(2);
-    }
-    componentWillReceiveProps(nextProps) {
-        if(this.props.booksData!==nextProps.booksData) {
-            this.searchBook(this.props.search.searchTerm);
-        }
-        // if(this.props.booksData!==nextProps.booksData) {
-        //     var length = nextProps.booksData.length;
-        //     var dataToRender = [];
-        //     var searchString = nextProps.search.searchTerm.toUpperCase();
-        //     for( let i = 0; i < length; i++ ) {
-        //         let name = nextProps.booksData[i]["name"].toUpperCase();
-        //         if( name.indexOf( searchString ) >= 0 ) {
-        //             dataToRender.push(nextProps.booksData[i]);
-        //         }
-        //     }
-        //     this.setState({
-        //         data: dataToRender
-        //     });
-        // }
     }
     render() {
         return (
             <div className="home">
                 <h1>BOOK STORE</h1>
                 <Search searchText={this.props.search.searchTerm} handleSearchText={this.handleSearchTerm} 
-                handleSearchClick={this.handleSearchClick} clearSearchTerm={this.clearSearchTerm}/>
-                <BooksList searchText={this.props.search.searchText} items={this.state.data}/>
+                 clearSearchTerm={this.clearSearchTerm}/>
+                <BooksList items={this.props.booksData(this.props.match.params.searchText)} searchText={this.props.search.searchTerm} />
             </div>
         );
     }

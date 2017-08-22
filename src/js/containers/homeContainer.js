@@ -7,7 +7,19 @@ import { search } from "../common/common";
 const mapStateToProps = ({state}) => {
     return {
         search: state.search,
-        booksData: state.booksData
+        booksData: (searchValue = "")=> {
+            searchValue=searchValue.toUpperCase();
+            var booksData = state.booksData;
+            var length = booksData.length;
+            var dataToRender = [];
+            for( let i = 0; i < length; i++ ) {
+                let name = booksData[i]["name"].toUpperCase();
+                if(search(searchValue, name)) {
+                    dataToRender.push(booksData[i]);
+                }
+            }
+            return dataToRender;
+        }
     };
 };
 const mapDispatchToProps = (dispatch) => {

@@ -1,6 +1,6 @@
 import React from "react";
 import Home from "./containers/homeContainer";
-import Details from "./containers/details";
+import Details from "./containers/detailsContainer";
 
 import {BrowserRouter as Router, Route, Link, Switch, Redirect, browserHistory} from "react-router-dom";
 
