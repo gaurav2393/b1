@@ -1,24 +1,24 @@
 // import React from 'react';
-// import * as action from '../actions/actions';
-// import * as actionTypes from '../constants/actionTypes';
-// import reducer from '../reducers/stateReducer';
+import * as action from '../actions/actions';
+import * as actionTypes from '../constants/actionTypes';
+import reducer from '../reducers/stateReducer';
 
 
-describe('tiles reducer', () => {
+describe('Book Store Reducer', () => {
 
-    /*const initialState = {
+    const initialState = {
         search: {
             searchTerm: ""
         },
         booksData: []
-    };*/
+    };
 
     it('should return the initial state', () => {
-        // expect(reducer(undefined, {})).toEqual(initialState);
-        expect(true).toBeTruthy();
+        expect(reducer(undefined, {})).toEqual(initialState);
+        //expect(true).toBeTruthy();
     });
 
-    /*it('should return the modified state after updating the search term', () => {
+    it('should return the modified state after updating the search term', () => {
         const action = {
             type: actionTypes.HANDLE_SEARCH_TERM,
             searchValue: 'Two'
@@ -32,86 +32,69 @@ describe('tiles reducer', () => {
         };
 
         expect(reducer(initialState, action)).toEqual(finalState);
-    });*/
+    });
 
-    // it('set searched details with value', () => {
-    //     expect(reducer(initialState, {type: actionTypes.SHOW_SEARCHED_DETAILS, searchedData: []})).toEqual({
+    it('should return the same booksData Array after updating the search term', () => {
+        const action = {
+            type: actionTypes.HANDLE_SEARCH_TERM,
+            searchValue: 'Two'
+        };
 
-    //         searchText: "",
-    //         items: [],
-    //         edit: false,
-    //         filteredItems: []
-    //     })
-    // });
+        const finalState = {
+            search: {
+                searchTerm: 'Two'
+            },
+            booksData: []
+        };
+        let finalBooksData = reducer(initialState, action).booksData;
+        expect(finalBooksData).toEqual(initialState.booksData);
+    });
 
-    // it('should return the modified state after loading the tiles', () => {
-    //     const action = {
-    //         type: actionTypes.UPDATED_JSON_DATA_ACTION,
-    //         items: [
-    //             {
-    //                 "id": "1",
-    //                 "name": "season123456",
-    //                 "description": "This is for season 123456"
-    //             }]
-    //     };
+    it('should return the modified state updating the books data array', () => {
+        const action = {
+            type: actionTypes.UPDATE_BOOKS_DATA,
+            booksData: [{
+                id: '1',
+                name: 'Two State',
+                description: 'It is a book about a guy in IIM'
+            }]
+        };
 
-    //     const finalState = {
-    //         searchText: "",
-    //         items: [
-    //             {
-    //                 "id": "1",
-    //                 "name": "season123456",
-    //                 "description": "This is for season 123456"
-    //             }],
-    //         filteredItems: [],
-    //         edit: false
-    //     };
+        const finalState = {
+            search: {
+                searchTerm: ''
+            },
+            booksData: [{
+                id: '1',
+                name: 'Two State',
+                description: 'It is a book about a guy in IIM'
+            }]
+        };
+        expect(reducer(initialState, action)).toEqual(finalState);
+    });
 
-    //     expect(reducer(initialState, action)).toEqual(finalState);
-    // });
-    // it('should change the modal status in the state', () => {
-    //     const action = {
-    //         type: actionTypes.EDIT_POPUP_STATE,
-    //         edit: true,
-    //     };
+    it('should return the same search state updating the books data array', () => {
+        const action = {
+            type: actionTypes.UPDATE_BOOKS_DATA,
+            booksData: [{
+                id: '1',
+                name: 'Two State',
+                description: 'It is a book about a guy in IIM'
+            }]
+        };
 
-    //     const finalState = {
-    //         searchText: "",
-    //         items: [],
-    //         filteredItems: [],
-    //         edit: true
-    //     };
+        const finalState = {
+            search: {
+                searchTerm: ''
+            },
+            booksData: [{
+                id: '1',
+                name: 'Two State',
+                description: 'It is a book about a guy in IIM'
+            }]
+        };
+        let finalSearch = reducer(initialState, action).search;
+        expect(finalSearch).toEqual(initialState.search);
+    });
 
-    //     expect(reducer(initialState, action)).toEqual(finalState);
-    // });
-
-
-
-    // it('clear search term', () => {
-    //     expect(reducer(initialState, {type: actionTypes.CLEAR_SEARCH_TEXT, searchText: 'delete-search-Term'})).toEqual({
-    //         searchText: "",
-    //         items: [],
-    //         edit: false,
-    //         filteredItems: []
-    //     })
-    // });
-
-
-    // it('loaded details', () => {
-    //     expect(reducer(initialState, {type: actionTypes.SHOW_DETAILS_ACTION, items: ['1']})).toEqual({
-    //         searchText: "",
-    //         items: ['1'],
-    //         edit: false,
-    //         filteredItems: []
-    //     })
-    // });
-
-    // it('loaded details', () => {
-    //     expect(reducer(initialState, {type: actionTypes.SHOW_FILTERED_DETAILS_ACTION, items: ['1']})).toEqual({
-    //         searchText: "",
-    //         items: ['1'],
-    //         edit: false,
-    //         filteredItems: []
-    //     })
-    // });
 });

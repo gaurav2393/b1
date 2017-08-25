@@ -2,11 +2,12 @@ import {all, takeEvery, call, put, race } from "redux-saga/effects";
 import * as actionTypes from "../constants/actionTypes";
 import * as commonFunctions from "../common/common";
 
-function* fetchBookData(){
+export function* fetchBookData(){
 	var booksData = yield call(commonFunctions.fetchBookData);
 	yield put({type: actionTypes.UPDATE_BOOKS_DATA, booksData: booksData});
 }
-function* storeBookData(action){	
+
+export function* storeBookData(action){
 	var bookData = yield call(commonFunctions.storeBookData, action);
 	yield put({type: actionTypes.UPDATE_BOOKS_DATA, booksData: booksData});
 }

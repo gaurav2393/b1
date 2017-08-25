@@ -1,3 +1,5 @@
+import config from "./utils.js";
+
 export function search(searchValue, searchIn) {
     if(searchIn.indexOf(searchValue)>=0) {
         return true;
@@ -7,7 +9,7 @@ export function search(searchValue, searchIn) {
 }
 export function fetchBookData() {
     return new Promise(function (resolve, reject) {
-        fetch("http://localhost:3000/booksData")
+        fetch(`${config.base}${config.booksData}`)
             .then(response => response.json())
             .then(data => {
                 let items = data.items;
@@ -24,7 +26,7 @@ export function storeBookData(action) {
         var payload = Object.assign({}, action.bookData);
         var id = action.bookData.id;
         var data = new FormData();
-        fetch(`http://localhost:3000/booksData/${id}`, {
+        fetch(`${config.base}${config.booksData}/${id}`, {
             method: "put",
             headers: {
                 "Accept": "application/json",
