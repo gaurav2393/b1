@@ -56,9 +56,11 @@ class Details extends React.Component {
 
     componentDidMount() {
         this.props.fetchBooksData();
-        var booksData = this.props.booksData;
+    }
+    componentWillReceiveProps(nextProps) {
+        var booksData = nextProps.booksData;
         var length = booksData.length;
-        var searchString = this.props.match.params.id;
+        var searchString = nextProps.match.params.id;
         booksData.map((data)=>{
             let id = data["id"];
             if(searchString===id) {
@@ -68,16 +70,6 @@ class Details extends React.Component {
                 });
             }
         });
-        // for (let i = 0; i < length; i++) {
-        //     let id = booksData[i]["id"];
-        //     if (searchString === id) {
-        //         this.setState({
-        //             itemData: booksData[i],
-        //             tempData: booksData[i]
-        //         });
-        //         break;
-        //     }
-        // }
     }
     render() {
         return (

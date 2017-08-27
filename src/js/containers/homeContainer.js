@@ -3,23 +3,25 @@ import { connect } from "react-redux";
 import Home from "../components/home";
 import * as actions from "../actions/actions";
 import { search } from "../common/common";
+import { getBooksData } from "../selectors/selector";
 
 const mapStateToProps = ({state}) => {
     return {
         search: state.search,
-        booksData: (searchValue = "")=> {
-            searchValue=searchValue.toUpperCase();
-            var booksData = state.booksData;
-            var length = booksData.length;
-            var dataToRender = [];
-            for( let i = 0; i < length; i++ ) {
-                let name = booksData[i]["name"].toUpperCase();
-                if(search(searchValue, name)) {
-                    dataToRender.push(booksData[i]);
-                }
-            }
-            return dataToRender;
-        }
+        booksData: (searchValue) => getBooksData(state, searchValue)
+        // booksData: (searchValue = "")=> {
+        //     searchValue=searchValue.toUpperCase();
+        //     var booksData = state.booksData;
+        //     var length = booksData.length;
+        //     var dataToRender = [];
+        //     for( let i = 0; i < length; i++ ) {
+        //         let name = booksData[i]["name"].toUpperCase();
+        //         if(search(searchValue, name)) {
+        //             dataToRender.push(booksData[i]);
+        //         }
+        //     }
+        //     return dataToRender;
+        // }
     };
 };
 const mapDispatchToProps = (dispatch) => {

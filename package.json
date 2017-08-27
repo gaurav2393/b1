@@ -30,6 +30,7 @@
     "compression": "1.6.2",
     "cors": "2.8.3",
     "express": "^4.15.3",
+    "jest-serializer-enzyme": "^1.0.0",
     "lodash": "4.17.4",
     "npm-run-all": "^4.0.2",
     "path": "^0.12.7",
@@ -44,17 +45,18 @@
     "redux": "3.6.0",
     "redux-saga": "^0.15.6",
     "redux-thunk": "2.2.0",
+    "reselect": "^3.0.1",
     "styled-components": "2.0.0",
     "webpack": "2.6.1",
     "webpack-dev-middleware": "1.10.2",
     "webpack-hot-middleware": "2.18.0",
-    "webpack-merge": "^4.1.0",
-    "jest-serializer-enzyme": "^1.0.0"
+    "webpack-merge": "^4.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "7.2.3",
+    "babel-jest": "^20.0.3",
     "babel-loader": "7.0.0",
     "babel-plugin-dynamic-import-node": "1.0.2",
     "babel-plugin-syntax-dynamic-import": "6.18.0",
@@ -81,6 +83,7 @@
     "eslint-plugin-react": "7.0.1",
     "flow-bin": "0.47.0",
     "jest": "20.0.4",
+    "jest-cli": "^20.0.4",
     "jest-serializer-enzyme": "1.0.0",
     "less-loader": "^4.0.5",
     "moxios": "0.4.0",
@@ -90,9 +93,7 @@
     "react-hot-loader": "3.0.0-beta.6",
     "react-test-renderer": "15.5.4",
     "style-loader": "^0.18.2",
-    "webpack-dev-server": "2.4.5",
-    "jest-cli": "^20.0.4",
-    "babel-jest": "^20.0.3"
+    "webpack-dev-server": "2.4.5"
   },
   "homepage": "https://github.com/gaurav2393/bookStoreAssignmemt1#readme"
 }
