@@ -9,7 +9,7 @@ export function* fetchBookData(){
 
 export function* storeBookData(action){
 	var bookData = yield call(commonFunctions.storeBookData, action);
-	yield put({type: actionTypes.UPDATE_BOOKS_DATA, booksData: booksData});
+	yield put({type: actionTypes.UPDATE_BOOKS_DATA, booksData: bookData});
 }
 
 export default function* rootSaga() {

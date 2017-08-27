@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const Book = (props) => {
     return (
@@ -12,5 +13,9 @@ const Book = (props) => {
             </Link>
         </li>
     );
+};
+
+Book.PropTypes = {
+    listItem: PropTypes.object.isRequired
 };
 export default Book;

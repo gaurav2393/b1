@@ -12,6 +12,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         storeBookData: (data) => {
             dispatch(actions.storeBookData(data));
+        },
+        fetchBooksData: () => {
+            dispatch(actions.fetchBooksData());
         }
     };
 };

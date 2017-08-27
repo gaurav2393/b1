@@ -66,7 +66,9 @@ app.put('/booksData/:id', function (req, res) {
 app.get('/search/:tagId', function (req, res) {
     res.sendFile(path.join(__dirname, '../public/index.html'));
 });
-
+app.get('/search/', function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/index.html'));
+});
 app.get('/bookDetail/:tagId', function (req, res) {
     res.sendFile(path.join(__dirname, '../public/index.html'));
 });

@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 const ShowBookDetail = (props) => {
     return (
             <div className="show-data">
@@ -14,5 +16,9 @@ const ShowBookDetail = (props) => {
                 </div>                
             </div>
     );
+};
+
+ShowBookDetail.PropTypes = {
+    itemData: PropTypes.object
 };
 export default ShowBookDetail;

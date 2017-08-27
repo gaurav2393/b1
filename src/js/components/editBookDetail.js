@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 const EditBookDetail = (props) => {
     return (
         <div className="edit-data">
@@ -18,5 +20,8 @@ const EditBookDetail = (props) => {
             </div>
         </div>
     );
+};
+EditBookDetail.PropTypes = {
+    itemData: PropTypes.object
 };
 export default EditBookDetail;

@@ -4,6 +4,7 @@ import BooksList from "../components/booksList";
 import { connect } from "react-redux";
 import * as actions from "../actions/actions";
 import { search } from "../common/common";
+import PropTypes from "prop-types";
 
 class Home extends React.Component {
     constructor(props) {
@@ -35,6 +36,10 @@ class Home extends React.Component {
     }
 }
 
+Home.PropTypes = {
+    search: PropTypes.object,
+    booksData: PropTypes.array
+};
 export default Home;
 
 

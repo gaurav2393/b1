@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const Search = (props) => {    
     return (
@@ -12,5 +13,8 @@ const Search = (props) => {
         </div>
 
     );
+};
+Search.PropTypes = {
+	searchText: PropTypes.string
 };
 export default Search;

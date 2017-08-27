@@ -33,9 +33,9 @@ export function storeBookData(action) {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(payload)
-        }).then(function (response) {
+        }).then( (response) => {
             return response.json();
-        }).then(function (data) {
+        }).then( (data) => {
 
         });
 

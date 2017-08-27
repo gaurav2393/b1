@@ -3,6 +3,7 @@ import ShowBookDetail from "../components/showBookDetail.js";
 import EditBookDetail from "../components/editBookDetail";
 import { connect } from "react-redux";
 import * as actions from "../actions/actions";
+import PropTypes from "prop-types";
 
 class Details extends React.Component {
     constructor(props) {
@@ -53,20 +54,30 @@ class Details extends React.Component {
         this.props.storeBookData(this.state.tempData);
     }
 
-    componentWillMount() {
+    componentDidMount() {
+        this.props.fetchBooksData();
         var booksData = this.props.booksData;
         var length = booksData.length;
-        var searchString = this.props.match.params.id;        
-        for (let i = 0; i < length; i++) {
-            let id = booksData[i]["id"];
-            if (searchString === id) {
+        var searchString = this.props.match.params.id;
+        booksData.map((data)=>{
+            let id = data["id"];
+            if(searchString===id) {
                 this.setState({
-                    itemData: booksData[i],
-                    tempData: booksData[i]
+                    itemData: data,
+                    tempData: data
                 });
-                break;
             }
-        }
+        });
+        // for (let i = 0; i < length; i++) {
+        //     let id = booksData[i]["id"];
+        //     if (searchString === id) {
+        //         this.setState({
+        //             itemData: booksData[i],
+        //             tempData: booksData[i]
+        //         });
+        //         break;
+        //     }
+        // }
     }
     render() {
         return (
@@ -78,4 +89,7 @@ class Details extends React.Component {
         );
     }
 }
+Details.PropTypes = {
+    booksData: PropTypes.array
+};
 export default Details;
