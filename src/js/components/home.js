@@ -6,7 +6,7 @@ import * as actions from "../actions/actions";
 import { search } from "../common/common";
 import PropTypes from "prop-types";
 
-class Home extends React.Component {
+class Home extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {

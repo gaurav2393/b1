@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import * as actions from "../actions/actions";
 import PropTypes from "prop-types";
 
-class Details extends React.Component {
+class Details extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
