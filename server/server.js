@@ -23,7 +23,7 @@ app.listen(port, function (error) {
     if (error) {
         console.log(error);
     } else {
-        //open(`http://localhost:${port}`)
+        open(`http://localhost:${port}`)
     }
 });
 
